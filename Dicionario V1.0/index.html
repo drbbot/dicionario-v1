@@ -1,0 +1,426 @@
+<!DOCTYPE html>                                                             <!-- Diz ao navegador que o documento é HTML5 -->
+<html lang="pt-br">                                                         <!-- Define o idioma como português do Brasil -->
+<head>
+<meta charset="UTF-8">                                                      <!-- Permite usar acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">      <!-- Faz funcionar bem em todas as telas -->
+<title>Dicionário Full Stack</title>                                        <!-- Texto que aparece na aba do navegador -->
+
+<style>                                                    /* Área onde escrevemos o CSS da página */
+/* ============================= */
+ /* RESET (PADRÃO DO NAVEGADOR) */
+/* ============================= */
+*{                                                         /* Seleciona TODOS os elementos da página */              
+    margin:0;                                              /* Remove margens padrão que o navegador coloca */
+    padding:0;                                             /* Remove espaçamento interno padrão */
+    box-sizing:border-box;                                 /* Faz largura incluir padding e borda dentro do tamanho */
+    font-family:sans-serif;                                /* Define uma fonte simples padrão para todo o site */
+}
+/* ============================= */
+    /* HEADER (CABEÇALHO) */
+/* ============================= */
+header{                                                         /* Área superior do site (cabeçalho da página) */
+    width:100%;                                                 /* Faz o header ocupar 100% da largura da tela */
+    background:linear-gradient(to right, #004400, #006600); /* Cria um fundo com mais profundidade */
+    display:flex;                                               /* Ativa o sistema Flexbox para organizar os elementos */
+    flex-direction:column;                                      /* Organiza os elementos um embaixo do outro */
+    box-shadow:0 4px 15px rgba(0,0,0,0.25);                   /* Cria uma sombra mais forte abaixo do cabeçalho */
+    color:white;                                              /* Define a cor padrão do texto dentro do header */
+    position:relative;                                          /* Permite controlar sobreposição de elementos(base pra usar z-index)*/
+    z-index:10;                                                 /* Garante que o header fique acima de outros elementos */
+    border-bottom-left-radius:15px;                             /* Arredonda o canto inferior esquerdo */
+    border-bottom-right-radius:15px;                            /* Arredonda o canto inferior direito */
+    overflow:hidden;                                            /* Impede que elementos ultrapassem o arredondamento */
+}
+.headdiv{                                                  /* Div que agrupa todo o conteúdo do header */
+    width:100%;                                            /* Ocupa toda a largura do header */
+    margin:auto;                                           /* Centraliza caso exista limite de largura */
+    display:flex;                                          /* Ativa flexbox dentro da div */
+    flex-direction:column;                                 /* Organiza os elementos verticalmente */
+}
+/* ============================= */
+       /* LOGO + TÍTULO */
+/* ============================= */
+.logo-container{                                           /* Container que agrupa o texto do site e a logo */
+    display:flex;                                          /* Ativa o sistema Flexbox para organizar os elementos */
+    justify-content:center;                                /* Centraliza os elementos horizontalmente */
+    align-items:center;                                    /* Centraliza os elementos verticalmente */
+    gap:20px;                                              /* Cria mais espaço entre o texto e a imagem */
+    padding:20px 10px;                                     /* Dá mais respiro vertical ao topo */
+    border-bottom:1px solid rgba(255,255,255,0.15);      /* separa visualmente topo e nav */
+}
+.logo-container img{                                       /* Seleciona apenas imagens dentro de .logo-container */
+    height:80px;                                           /* Define uma altura maior para a imagem */
+    width:auto;                                            /* Mantém a proporção original da imagem */
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))        /* Cria uma sombra suave na imagem */
+           invert(1)                                       /* Inverte as cores (útil para fundo escuro) */
+           opacity(0.8);                                   /* Deixa levemente transparente */
+}
+.logo-texto{                                               /* Área do texto da logo */
+    display:flex;                                          /* Ativa flexbox */
+    flex-direction:column;                                 /* Organiza em coluna */
+    align-items:flex-start;                                /* Alinha o texto à esquerda */
+}
+.titulo-principal{                                         /* Título principal do site */
+    font-size:34px;                                        /* Deixa o título maior */
+    font-weight:bold;                                      /* Deixa mais forte */
+    letter-spacing:3px;                                    /* Dá mais presença visual */
+    text-shadow:0 2px 6px rgba(0,0,0,1);                 /* leve brilho */
+    margin-bottom:2px;                                     /* Espaço pequeno abaixo */
+}
+.titulo-secundario{                                        /* Subtítulo do site */
+    font-size:14px;                                        /* Menor que o principal */
+    font-weight:bold;                                      /* Mantém destaque */
+    letter-spacing:6px;                                    /* Dá mais estilo ao subtítulo */
+    color:#bfffbf;                                       /* Verde claro para diferenciar */
+}
+/* ============================= */
+            /* NAV */
+/* ============================= */
+.nav-itens{                                                /* Container do menu */
+    display:flex;                                          /* Deixa os itens do menu em linha */
+    width:100%;                                            /* Ocupa toda largura */
+background:linear-gradient(                                /* Cria um efeito de transição suave entre cores */
+    to bottom,                                             /* Direção do degradê: de cima para baixo */
+    #006600,                                             /* Cor inicial (parte de cima do menu) */
+    #005000);                                            /* Cor final (parte de baixo do menu) */
+    border-top:1px solid rgba(255,255,255,0.15);         /* Linha separando topo e menu */
+    padding:0 8px;                                         /* Espaço interno lateral (esquerda e direita) */
+    gap:8px;                                               /* Espaço entre os botões */
+}
+.nav-itens img{                                            /* Ícones do menu */
+    height:24px;                                           /* Altura dos ícones */
+    width:auto;                                            /* Mantém proporção */
+}
+/* ============================= */
+        /* BOTÕES DO NAV */
+/* ============================= */
+.div-nav{                                                  /* Cada botão do menu */
+    flex:1;                                                /* Divide espaço igualmente */
+    display:flex;                                          /* Layout flex */
+    align-items:center;                                    /* Centraliza vertical */
+    justify-content:center;                                /* Centraliza horizontal */
+    gap:8px;                                               /* Espaço entre ícone e texto */
+    padding:10px 0;                                        /* Altura do botão */
+    border-radius:8px;                                     /* Arredonda os botões */
+    background-color:rgba(255,255,255,0.04);             /* Fundo leve para destacar cada item */
+    transition:all 0.25s ease;                             /* Suaviza hover */
+    background:linear-gradient(                            /* Cria um efeito de transição suave entre cores */
+        to bottom,                                         /* Direção do degradê: de cima para baixo */
+        rgba(255,255,255,0.08),                          /* Cor inicial (parte de cima do menu) */
+        rgba(0,0,0,0.1));                                /* Cor final (parte de baixo do menu) */
+}
+.div-nav p{                                                /* Texto do menu */
+    font-weight:bold;                                      /* Deixa o texto mais forte */
+    letter-spacing:1px;                                    /* Dá mais presença visual */
+    font-size:15px;                                        /* Ajusta melhor o tamanho */
+    text-shadow:0 1px 2px rgba(0,0,0,0.25);              /* Dá leve profundidade */
+    text-transform:uppercase;                              /* Deixa tudo em maiúsculo */
+}
+.div-nav:hover{                                            /* Efeito hover do menu */
+    background-color:rgba(255,255,255,0.18);             /* Clareia o fundo ao passar o mouse */
+    transform:translateY(-2px);                            /* Dá sensação de destaque */
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);              /* Cria profundidade */
+    cursor:pointer;                                        /* Cursor clicável */
+}
+.div-nav:active{                                           /* :active = quando o usuário está clicando no elemento */
+    transform:scale(0.97);                                 /* Diminui levemente o tamanho, simulando um "clique físico" */
+}
+/* ============================= */
+        /* CORES DO NAV */
+/* ============================= */
+.div-html{                                                 /* Estiliza o botão referente ao HTML */
+    border-bottom:4px solid #E34F26;                     /* Linha inferior com a cor oficial do HTML */
+    color:white;                                         /* Mantém o texto branco para contraste */
+}
+.div-css{                                                  /* Estiliza o botão referente ao CSS */
+    border-bottom:4px solid #1572B6;                     /* Linha inferior com a cor oficial do CSS */
+    color:white;                                         /* Texto branco para melhor leitura */
+}
+.div-js{                                                   /* Estiliza o botão referente ao JavaScript */
+    border-bottom:4px solid #F7DF1E;                     /* Linha inferior com a cor oficial do JS */
+    color:white;                                         /* Texto branco para contraste com fundo escuro */
+}
+.div-vs-code{                                              /* Estiliza o botão referente ao VS Code */
+    border-bottom:4px solid #007ACC;                     /* Linha inferior com a cor oficial do VS Code */
+    color:white;                                         /* Texto branco para manter padrão visual */
+}
+/* ============================= */
+             /* MAIN */
+/* ============================= */
+main{
+    background-color:#e4ffe6;                            /* cor de fundo da área principal */
+    min-height:100vh;                                      /* garante altura mínima da tela inteira */
+    padding-top:20px;                                      /* espaço entre o topo e o conteúdo */
+}
+/* ============================= */
+       /* CORPO CENTRAL */
+/* ============================= */
+.corpo{
+    display:flex;                                          /* ativa layout flexível */
+    width:90%;                                             /* largura principal do conteúdo */
+    max-width:2200px;                                      /* limite máximo para telas grandes */
+    margin:auto;                                           /* centraliza horizontalmente */
+    gap:20px;                                              /* espaço entre coluna principal e lateral */
+    padding:20px;                                          /* espaço interno nas bordas */
+}
+/* ============================= */
+     /* CONTEÚDO PRINCIPAL */
+/* ============================= */
+.conteudo-principal{
+    flex:7;                                                /* ocupa a maior parte do espaço */
+    background-color:rgb(255, 255, 255);                 /* fundo branco para destacar conteúdo */
+    padding:20px;                                          /* espaço interno do conteúdo */
+    border-radius:10px;                                    /* cantos arredondados */
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);               /* sombra suave para profundidade */
+}
+/* ============================= */
+    /* BLOCO DO DICIONÁRIO */
+/* ============================= */
+.item-dicionario{
+    display:flex;                                          /* coloca imagem e texto lado a lado */
+    gap:20px;                                              /* espaço entre imagem e texto */
+    margin-bottom:40px;                                    /* distância entre blocos */
+    padding:20px;                                          /* espaço interno do bloco */
+    border-radius:10px;                                    /* arredonda as bordas */
+    background-color:#ffffff;                            /* cor de fundo do bloco */
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);              /* sombra mais visível */
+    transition:all 0.3s ease;                              /* animação suave para hover */
+}
+/* EFEITO AO PASSAR O MOUSE */
+.item-dicionario:hover{
+    background-color:#e8e8e8;                            /* muda levemente a cor */
+    transform:translateY(-5px);                            /* faz o bloco subir */
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);              /* aumenta a sombra */
+    cursor:pointer;                                        /* mostra que é interativo */
+}
+.item-invertido{
+    flex-direction:row-reverse;                            /* inverte imagem e texto */
+}
+/* ============================= */
+      /* IMAGEM DO BLOCO */
+/* ============================= */
+.item-imagem{
+    flex:2.5;                                              /* largura menor da coluna de imagem */
+}
+.item-imagem img{
+    width:100%;                                            /* imagem ocupa toda a largura da caixa */
+    height:250px;                                          /* altura fixa para padronizar layout */
+    object-fit:cover;                                      /* corta a imagem sem distorcer */
+    border-radius:6px;                                     /* cantos levemente arredondados */
+}
+/* ============================= */
+      /* TEXTO DO BLOCO */
+/* ============================= */
+.item-texto{
+    flex:4;                                                /* coluna de texto maior que a imagem */
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.item-dicionario-titulos{
+    margin-bottom:8px;                                     /* espaço entre título e parágrafo */
+    color:#005004;                                       /* cor temática do site */
+    font-size:22px;
+    border-left:4px solid #005004;
+    padding-left:10px;
+}
+.item-texto p{
+    line-height:1.6;                                       /* melhora leitura do parágrafo */
+    margin-top: 10px;
+    color:#333;
+}
+.item-texto p:first-of-type{
+    font-weight:bold;
+}
+/* ============================= */
+       /* BARRA LATERAL */
+/* ============================= */
+.barra-lateral{
+    flex:3;                                                /* ocupa parte menor do layout */
+    background-color:white;                              /* fundo branco */
+    padding:20px;                                          /* espaço interno */
+    border-radius:10px;                                    /* cantos arredondados */
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);               /* mesma sombra do conteúdo principal */
+}
+.barra-lateral h3{
+    margin-bottom:10px;                                    /* espaço abaixo do título */
+    color:#005004;                                       /* mantém identidade visual */
+}
+.barra-lateral ul{
+    margin-left:20px;                                      /* recuo da lista */
+    margin-top:5px;                                        /* espaço acima da lista */
+}
+.bloco-lista,
+.bloco-div{
+    margin-bottom:20px;                                    /* separa blocos da barra lateral */
+}
+/* ============================= */
+            /* FOOTER */
+/* ============================= */
+footer{
+    width:100%;                                            /* ocupa toda largura */
+    background-color:#005004;                            /* mesma cor do header */
+    color:white;                                         /* texto branco */
+    text-align:center;                                     /* centraliza texto */
+    padding:20px;                                          /* espaço interno */
+}
+</style>
+</head> 
+ 
+<body>  <!-- Início do conteúdo visível do site -->
+    <!-- Header = cabeçalho do site (parte superior da página) -->
+    <header>
+        <!-- Div usada apenas para organizar e centralizar os elementos em caixas dentro da página -->
+        <!-- Essa div agrupa logo, título e menu -->
+        <div class="headdiv">
+            <!-- Área que agrupa o título do site e a logo -->
+            <div class="logo-container">
+                <!-- Área do texto principal do projeto -->
+                <div class="logo-texto">
+                    <!-- Título principal do site -->
+                    <p class="titulo-principal">DICIONÁRIO</p>
+                    <!-- Subtítulo do site -->
+                    <p class="titulo-secundario">FULL STACK</p>
+                </div>
+                <!-- Área da logo -->
+                <div>
+                    <!-- IMG = insere uma imagem no site -->
+                    <!-- src = endereço da imagem -->
+                    <!-- alt = descrição da imagem -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25185.png" alt="dicionario">
+                </div>
+            </div>
+            <!-- Área do menu de navegação do site -->
+            <div class="nav-itens">
+                <!-- Cada uma dessas divs representa um botão do menu -->
+                <div class="div-nav div-html">
+                    <p>HTML</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/500px-HTML5_logo_and_wordmark.svg.png" alt="logo html">
+                </div>
+                <div class="div-nav div-css">
+                    <p>CSS</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1920px-CSS3_logo_and_wordmark.svg.png" alt="logo css">
+                </div>
+                <div class="div-nav div-js">
+                    <p>JS</p>
+                    <img src="https://iconape.com/wp-content/png_logo_vector/javascript-logo.png" alt="logo javascript">
+                </div>
+                <div class="div-nav div-vs-code">
+                    <p>VS CODE</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1280px-Visual_Studio_Code_1.35_icon.svg.png" alt="logo vs code">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main = área principal onde fica o conteúdo do site -->
+    <main>
+        <!-- Aqui ficam o conteúdo principal e a barra lateral -->
+        <div class="corpo">
+            <!-- Área principal do conteúdo do dicionário -->
+            <div class="conteudo-principal">
+                <!-- BLOCO 1 -->
+                <!-- Cada "item-dicionario" representa um tópico do dicionário -->
+                <!-- Ele contém uma imagem e um texto explicativo -->
+                <div class="item-dicionario">
+                    <!-- Área da imagem do tópico -->
+                    <div class="item-imagem">
+                        <img src="https://th.bing.com/th/id/OIP.yW6YPOgMzUmwhJP_m-admwHaE7?w=275&h=183&c=7&r=0&o=7&pid=1.7&rm=3">
+                    </div>
+                    <!-- Área do texto do tópico -->
+                    <div class="item-texto">
+                        <!-- Tags H1 até H6 = títulos -->
+                        <h2 class="item-dicionario-titulos">PLANEJAMENTO INICIAL</h2>
+                        <p>Planejamento é a etapa onde você define o objetivo do projeto e como ele será construído.</p>
+                        <p>É aqui que você organiza ideias, estrutura páginas e decide o que realmente precisa ser feito.</p>
+                        <p>Sem planejamento, o código tende a ficar confuso, difícil de manter e cheio de retrabalho.</p>
+                        <p>Antes de programar, você aprende a pensar.</p>
+                    </div>
+                </div>
+                <!-- BLOCO 2 -->
+                <div class="item-dicionario item-invertido">
+                    <div class="item-imagem">
+                        <img src="https://th.bing.com/th/id/OIP.yW6YPOgMzUmwhJP_m-admwHaE7?w=275&h=183&c=7&r=0&o=7&pid=1.7&rm=3">
+                    </div>
+                    <div class="item-texto">
+                        <h2 class="item-dicionario-titulos">FERRAMENTAS</h2>
+                        <p>Ferramentas ajudam a transformar ideias em algo visual antes de começar a programar.</p>
+                        <p>Com elas, você consegue organizar layout, posicionamento e aparência da página de forma clara.</p>
+                        <p>Sem esse processo, você acaba programando sem direção.</p>
+                        <p>Elas economizam tempo e evitam refazer trabalho depois.</p>
+                    </div>
+                </div>
+                <!-- BLOCO 3 -->
+                <div class="item-dicionario">
+                    <div class="item-imagem">
+                        <img src="https://th.bing.com/th/id/OIP.yW6YPOgMzUmwhJP_m-admwHaE7?w=275&h=183&c=7&r=0&o=7&pid=1.7&rm=3">
+                    </div>
+                    <div class="item-texto">
+                        <h2 class="item-dicionario-titulos">VS CODE</h2>
+                        <p>Depois de planejar, é hora de começar a programar.</p>
+                        <p>O VS Code é o ambiente onde você escreve, organiza e executa seu código.</p>
+                        <p>Ele oferece ferramentas que ajudam a evitar erros e tornam o desenvolvimento mais rápido.</p>
+                        <p>Aqui o projeto começa a sair do papel e virar realidade.</p>
+                    </div>
+                </div>
+                <!-- BLOCO 4 -->
+                <div class="item-dicionario item-invertido">
+                    <div class="item-imagem">
+                        <img src="https://th.bing.com/th/id/OIP.yW6YPOgMzUmwhJP_m-admwHaE7?w=275&h=183&c=7&r=0&o=7&pid=1.7&rm=3">
+                    </div>
+                    <div class="item-texto">
+                        <h2 class="item-dicionario-titulos">HTML</h2>
+                        <p>O HTML é a base de qualquer site.</p>
+                        <p>Ele define a estrutura da página, organizando textos, imagens, links e conteúdos.</p>
+                        <p>Sem HTML, não existe página — apenas código solto.</p>
+                        <p>É o primeiro passo real na construção de um site.</p>
+                    </div>
+                </div>
+                <!-- BLOCO 5 -->
+                <div class="item-dicionario">
+                    <div class="item-imagem">
+                        <img src="https://th.bing.com/th/id/OIP.yW6YPOgMzUmwhJP_m-admwHaE7?w=275&h=183&c=7&r=0&o=7&pid=1.7&rm=3">
+                    </div>
+                    <div class="item-texto">
+                        <h2 class="item-dicionario-titulos">CSS</h2>
+                        <p>O CSS é responsável pela aparência do site.</p>
+                        <p>Ele controla cores, espaçamentos, tamanhos e posicionamento dos elementos.</p>
+                        <p>É o que transforma uma página simples em algo visualmente organizado e agradável.</p>
+                        <p>Sem CSS, tudo funciona… mas nada parece bom.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- BARRA LATERAL -->
+            <!-- Área usada para informações extras ou organização do conteúdo -->
+            <div class="barra-lateral">
+                <h3>Organização</h3>
+                <!-- Bloco que explica listas -->
+                <div class="bloco-lista">
+                    <h4>Listas</h4>
+                    <!-- UL = lista não ordenada (sem números) -->
+                    <!-- OL = lista ordenada (numerada) -->
+                    <ul>
+                        <!-- LI = item da lista -->
+                        <li>UL = lista</li>
+                        <li>OL = lista numerada</li>
+                        <li>LI = item</li>
+                    </ul>
+                </div>
+                <!-- Bloco explicando a tag div -->
+                <div class="bloco-div">
+                    <h4>Tag DIV</h4>
+                    <p>Serve para organizar elementos.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- FOOTER = rodapé do site -->
+    <footer>
+        <!-- Texto principal do projeto -->
+        <p>Dicionário Full Stack</p>
+        <!-- Descrição -->
+        <p>Projeto de estudo em desenvolvimento web</p>
+        <!-- Versão -->
+        <p>Versão V2</p>
+    </footer>
+</body>
+</html>
